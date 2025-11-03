@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Code, Smartphone, Brain, Database, Users, Award, Zap, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Code, Smartphone, Brain, Database, Users, Award, Zap, CheckCircle2, Sparkles } from 'lucide-react'
 import AnimatedBackground from '@/components/AnimatedBackground'
 
 export default function Home() {
@@ -50,6 +50,11 @@ export default function Home() {
     { icon: <CheckCircle2 className="w-6 h-6" />, number: '99%', label: 'Success Rate' }
   ]
 
+  const technologies = [
+    '⚛️ React', '📱 React Native', '🔷 Next.js', '🟢 Node.js', 
+    '🐍 Python', '🔥 Firebase', '☁️ AWS', '🎨 Tailwind CSS'
+  ]
+
   return (
     <div className="relative">
       <AnimatedBackground />
@@ -65,13 +70,14 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="space-y-8">
-            <div className="inline-block">
-              <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-semibold backdrop-blur-sm">
-                🚀 Innovating the Future of Technology
+            <div className="inline-block animate-bounce">
+              <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-semibold backdrop-blur-sm inline-flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                Innovating the Future of Technology
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
               <span className="block mb-2">Transform Your Business</span>
               <span className="gradient-text animate-pulse-slow">with Khodal IT Solutions</span>
             </h1>
@@ -94,6 +100,21 @@ export default function Home() {
               >
                 Get In Touch
               </Link>
+            </div>
+
+            {/* Tech Stack Badges */}
+            <div className="pt-12">
+              <p className="text-sm text-gray-500 mb-4">Trusted Technologies We Use</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 hover:scale-105"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -159,6 +180,96 @@ export default function Home() {
               View All Services
               <ArrowRight className="w-5 h-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Why Choose <span className="gradient-text">Khodal</span>?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
+              <div className="text-5xl mb-4">🎯</div>
+              <h3 className="text-xl font-bold mb-3">Result-Driven Approach</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                We focus on delivering measurable results that directly impact your business growth and success.
+              </p>
+            </div>
+            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
+              <div className="text-5xl mb-4">⚡</div>
+              <h3 className="text-xl font-bold mb-3">Cutting-Edge Technology</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                We use the latest technologies and best practices to build future-proof solutions.
+              </p>
+            </div>
+            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
+              <div className="text-5xl mb-4">🤝</div>
+              <h3 className="text-xl font-bold mb-3">Dedicated Support</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Our team provides continuous support to ensure your success every step of the way.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              What Our <span className="gradient-text">Clients Say</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Rahul Sharma',
+                role: 'CEO, TechStart India',
+                text: 'Khodal transformed our digital presence completely. Their expertise in web development is outstanding!',
+                rating: 5
+              },
+              {
+                name: 'Priya Mehta',
+                role: 'Founder, HealthCare Plus',
+                text: 'The AI solutions they delivered exceeded our expectations. Highly professional team!',
+                rating: 5
+              },
+              {
+                name: 'Amit Desai',
+                role: 'CTO, FinTech Solutions',
+                text: 'Best IT partner we have worked with. Their attention to detail is remarkable.',
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105"
+              >
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">⭐</span>
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-xl">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold">{testimonial.name}</p>
+                    <p className="text-sm text-gray-400">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
