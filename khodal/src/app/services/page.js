@@ -1,206 +1,305 @@
-'use client'
+'use client';
 
-import { Code, Smartphone, Brain, Database, Cloud, ShoppingCart, Search, Lock, Palette, Server, Globe, BarChart } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
-import Link from 'next/link'
+import Link from 'next/link';
+import AnimatedSection from '@/components/AnimatedSection';
+import {
+  Code,
+  Smartphone,
+  Brain,
+  Database,
+  Globe,
+  Layers,
+  Cloud,
+  Shield,
+  ArrowRight,
+  CheckCircle2,
+  Palette,
+  ShoppingCart,
+  BarChart,
+  Zap,
+} from 'lucide-react';
 
 export default function Services() {
   const mainServices = [
     {
-      icon: <Code className="w-12 h-12" />,
+      icon: <Code size={48} />,
       title: 'Web Development',
-      description: 'Create stunning, responsive websites and web applications using the latest frameworks and technologies.',
-      features: ['React & Next.js', 'Node.js Backend', 'Progressive Web Apps', 'E-commerce Solutions'],
-      color: 'from-cyan-500 to-blue-500'
+      description:
+        'Build powerful, scalable web applications using cutting-edge technologies like React, Next.js, Node.js, and more.',
+      features: [
+        'Responsive Web Design',
+        'Progressive Web Apps',
+        'E-commerce Solutions',
+        'CMS Development',
+        'API Development',
+        'Web Performance Optimization',
+      ],
+      gradient: 'from-purple-500 to-purple-700',
     },
     {
-      icon: <Smartphone className="w-12 h-12" />,
+      icon: <Smartphone size={48} />,
       title: 'App Development',
-      description: 'Build powerful native and cross-platform mobile applications for iOS and Android.',
-      features: ['React Native', 'Flutter Development', 'Native iOS & Android', 'App Maintenance'],
-      color: 'from-blue-500 to-purple-500'
+      description:
+        'Create native and cross-platform mobile applications that deliver seamless user experiences on iOS and Android.',
+      features: [
+        'Native iOS & Android Apps',
+        'Cross-platform Development',
+        'UI/UX Design',
+        'App Maintenance',
+        'Push Notifications',
+        'In-app Purchases',
+      ],
+      gradient: 'from-blue-500 to-blue-700',
     },
     {
-      icon: <Brain className="w-12 h-12" />,
-      title: 'AI/ML Solutions',
-      description: 'Leverage artificial intelligence and machine learning to automate and optimize your business processes.',
-      features: ['Predictive Analytics', 'Natural Language Processing', 'Computer Vision', 'Chatbots & Virtual Assistants'],
-      color: 'from-purple-500 to-pink-500'
+      icon: <Brain size={48} />,
+      title: 'AI & ML Solutions',
+      description:
+        'Leverage artificial intelligence and machine learning to automate processes and gain valuable insights from your data.',
+      features: [
+        'Machine Learning Models',
+        'Natural Language Processing',
+        'Computer Vision',
+        'Predictive Analytics',
+        'Chatbots & Virtual Assistants',
+        'AI Integration',
+      ],
+      gradient: 'from-indigo-500 to-indigo-700',
     },
     {
-      icon: <Database className="w-12 h-12" />,
+      icon: <Database size={48} />,
       title: 'Data Migration',
-      description: 'Seamlessly migrate your data to new systems with zero downtime and complete security.',
-      features: ['Cloud Migration', 'Database Migration', 'Data Integration', 'Legacy System Modernization'],
-      color: 'from-pink-500 to-red-500'
+      description:
+        'Seamlessly migrate your data with zero downtime and complete data integrity across different platforms and systems.',
+      features: [
+        'Cloud Migration',
+        'Database Migration',
+        'Legacy System Migration',
+        'Data Validation',
+        'Backup & Recovery',
+        'Performance Optimization',
+      ],
+      gradient: 'from-cyan-500 to-cyan-700',
+    },
+  ];
+
+  const additionalServices = [
+    {
+      icon: <Cloud />,
+      title: 'Cloud Services',
+      description: 'AWS, Azure, and Google Cloud solutions for scalable infrastructure.',
     },
     {
-      icon: <Cloud className="w-12 h-12" />,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and services to power your digital transformation.',
-      features: ['AWS & Azure', 'Cloud Architecture', 'DevOps Services', 'Cloud Security'],
-      color: 'from-red-500 to-orange-500'
-    },
-    {
-      icon: <ShoppingCart className="w-12 h-12" />,
-      title: 'E-Commerce',
-      description: 'Complete e-commerce solutions from design to deployment and ongoing optimization.',
-      features: ['Custom Stores', 'Payment Integration', 'Inventory Management', 'Multi-vendor Platforms'],
-      color: 'from-orange-500 to-yellow-500'
-    },
-    {
-      icon: <Search className="w-12 h-12" />,
-      title: 'SEO & Digital Marketing',
-      description: 'Boost your online presence and drive traffic with data-driven marketing strategies.',
-      features: ['SEO Optimization', 'Content Marketing', 'Social Media Marketing', 'PPC Campaigns'],
-      color: 'from-yellow-500 to-green-500'
-    },
-    {
-      icon: <Lock className="w-12 h-12" />,
+      icon: <Shield />,
       title: 'Cybersecurity',
-      description: 'Protect your digital assets with comprehensive security solutions and best practices.',
-      features: ['Security Audits', 'Penetration Testing', 'Compliance Management', 'Security Training'],
-      color: 'from-green-500 to-teal-500'
+      description: 'Protect your digital assets with advanced security solutions.',
     },
     {
-      icon: <Palette className="w-12 h-12" />,
+      icon: <Palette />,
       title: 'UI/UX Design',
-      description: 'Create intuitive and visually stunning user experiences that delight your customers.',
-      features: ['User Research', 'Wireframing & Prototyping', 'Visual Design', 'Usability Testing'],
-      color: 'from-teal-500 to-cyan-500'
+      description: 'Create stunning, user-friendly interfaces that engage users.',
     },
     {
-      icon: <Server className="w-12 h-12" />,
-      title: 'Backend Development',
-      description: 'Robust and scalable backend systems that power your applications efficiently.',
-      features: ['RESTful APIs', 'Microservices', 'Database Design', 'Server Management'],
-      color: 'from-cyan-500 to-blue-600'
+      icon: <ShoppingCart />,
+      title: 'E-commerce',
+      description: 'Build powerful online stores with seamless payment integration.',
     },
     {
-      icon: <Globe className="w-12 h-12" />,
-      title: 'Digital Transformation',
-      description: 'Transform your business with comprehensive digital strategies and solutions.',
-      features: ['Process Automation', 'Digital Strategy', 'Change Management', 'Technology Consulting'],
-      color: 'from-blue-600 to-indigo-600'
+      icon: <BarChart />,
+      title: 'Data Analytics',
+      description: 'Transform data into actionable insights for better decisions.',
     },
     {
-      icon: <BarChart className="w-12 h-12" />,
-      title: 'Analytics & BI',
-      description: 'Turn data into actionable insights with powerful analytics and business intelligence tools.',
-      features: ['Data Visualization', 'Custom Dashboards', 'Reporting Solutions', 'Predictive Analytics'],
-      color: 'from-indigo-600 to-purple-600'
-    }
-  ]
+      icon: <Zap />,
+      title: 'DevOps',
+      description: 'Streamline development with CI/CD and automation tools.',
+    },
+  ];
 
   const process = [
-    { step: '01', title: 'Discovery', description: 'Understanding your needs and goals' },
-    { step: '02', title: 'Planning', description: 'Creating a strategic roadmap' },
-    { step: '03', title: 'Development', description: 'Building your solution' },
-    { step: '04', title: 'Testing', description: 'Ensuring quality and performance' },
-    { step: '05', title: 'Deployment', description: 'Launching your project' },
-    { step: '06', title: 'Support', description: 'Ongoing maintenance and updates' }
-  ]
+    {
+      step: '01',
+      title: 'Discovery',
+      description: 'We understand your business goals, requirements, and challenges.',
+    },
+    {
+      step: '02',
+      title: 'Planning',
+      description: 'Create a detailed roadmap with timelines and milestones.',
+    },
+    {
+      step: '03',
+      title: 'Development',
+      description: 'Build your solution using agile methodologies and best practices.',
+    },
+    {
+      step: '04',
+      title: 'Testing',
+      description: 'Rigorous quality assurance to ensure flawless performance.',
+    },
+    {
+      step: '05',
+      title: 'Deployment',
+      description: 'Launch your solution with minimal disruption.',
+    },
+    {
+      step: '06',
+      title: 'Support',
+      description: 'Ongoing maintenance and support to ensure success.',
+    },
+  ];
 
   return (
-    <div className="relative">
-      <AnimatedBackground />
-      
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Our <span className="gradient-text">Services</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive IT solutions designed to accelerate your digital journey and drive business growth
-          </p>
+      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive IT solutions designed to help your business thrive in the digital age
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Main Services Grid */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Main Services */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-20">
             {mainServices.map((service, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:-translate-y-2 group"
-              >
-                <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/20`}>
-                  {service.icon}
+              <AnimatedSection key={index} animation="slide-up">
+                <div className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                  <div className={index % 2 === 1 ? 'md:order-2' : ''}>
+                    <div className={`w-20 h-20 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center text-white mb-6`}>
+                      {service.icon}
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                      {service.title}
+                    </h2>
+                    <p className="text-lg text-gray-600 mb-6">
+                      {service.description}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <CheckCircle2 className="text-green-500 flex-shrink-0 mt-1" size={20} />
+                          <span className="text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5 group"
+                    >
+                      Get Started <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+                    </Link>
+                  </div>
+                  <div className={index % 2 === 1 ? 'md:order-1' : ''}>
+                    <div className={`relative bg-gradient-to-br ${service.gradient} rounded-2xl p-8 shadow-xl`}>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+                        <div className="grid grid-cols-2 gap-4">
+                          {service.features.slice(0, 4).map((feature, idx) => (
+                            <div key={idx} className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
+                              <div className="text-white font-semibold text-sm">
+                                {feature}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center text-sm text-gray-300">
-                      <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Process</span>
+      {/* Additional Services */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              More Services We Offer
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Expand your capabilities with our comprehensive range of IT services
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {additionalServices.map((service, index) => (
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="w-14 h-14 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Development Process
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               A proven methodology that ensures successful project delivery
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {process.map((item, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 relative group"
-              >
-                <div className="text-6xl font-bold gradient-text opacity-20 absolute top-4 right-6">
-                  {item.step}
-                </div>
-                <div className="relative z-10">
-                  <div className="inline-block px-4 py-1 bg-cyan-500/20 rounded-full text-cyan-400 text-sm font-semibold mb-4">
-                    Step {item.step}
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="relative">
+                  <div className="absolute -top-4 -left-4 text-6xl font-bold text-purple-100">
+                    {item.step}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.description}</p>
+                  <div className="relative bg-white border-2 border-purple-100 p-6 rounded-xl hover:border-purple-300 transition-colors duration-300">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">{item.description}</p>
+                  </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-effect rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Get Started?
-              </h2>
-              <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Let's discuss how our services can help transform your business
-              </p>
-              <Link
-                href="/contact"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105"
-              >
-                Request a Consultation
-              </Link>
-            </div>
-          </div>
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+              Let's discuss how our services can help you achieve your goals
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium text-lg"
+            >
+              Contact Us Today
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>
-  )
+  );
 }

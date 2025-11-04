@@ -1,133 +1,164 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Linkedin, Twitter, Github, Facebook } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import { useState } from 'react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { Mail, Phone, MapPin, Send, Clock, Linkedin, Twitter, Facebook } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    company: '',
     service: '',
-    message: ''
-  })
+    message: '',
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission
-    alert('Thank you for contacting us! We will get back to you soon.')
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      message: ''
-    })
-  }
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitMessage('Thank you for your message! We will get back to you soon.');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: '',
+      });
+      
+      setTimeout(() => setSubmitMessage(''), 5000);
+    }, 1500);
+  };
 
   const contactInfo = [
     {
-      icon: <Mail className="w-6 h-6" />,
-      title: 'Email Us',
+      icon: <Phone />,
+      title: 'Phone',
+      details: ['+91 XXX XXX XXXX', '+91 YYY YYY YYYY'],
+      gradient: 'from-blue-500 to-blue-600',
+    },
+    {
+      icon: <Mail />,
+      title: 'Email',
       details: ['info@khodal.com', 'support@khodal.com'],
-      color: 'from-cyan-500 to-blue-500'
+      gradient: 'from-purple-500 to-purple-600',
     },
     {
-      icon: <Phone className="w-6 h-6" />,
-      title: 'Call Us',
-      details: ['+91 98765 43210', '+91 98765 43211'],
-      color: 'from-blue-500 to-purple-500'
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Visit Us',
+      icon: <MapPin />,
+      title: 'Address',
       details: ['Surat, Gujarat', 'India - 395007'],
-      color: 'from-purple-500 to-pink-500'
+      gradient: 'from-indigo-500 to-indigo-600',
     },
     {
-      icon: <Clock className="w-6 h-6" />,
-      title: 'Working Hours',
-      details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 2:00 PM'],
-      color: 'from-pink-500 to-red-500'
-    }
-  ]
+      icon: <Clock />,
+      title: 'Business Hours',
+      details: ['Mon - Fri: 9:00 AM - 6:00 PM', 'Sat: 10:00 AM - 4:00 PM'],
+      gradient: 'from-cyan-500 to-cyan-600',
+    },
+  ];
 
-  const socialLinks = [
-    { icon: <Linkedin className="w-5 h-5" />, name: 'LinkedIn', url: '#' },
-    { icon: <Twitter className="w-5 h-5" />, name: 'Twitter', url: '#' },
-    { icon: <Github className="w-5 h-5" />, name: 'GitHub', url: '#' },
-    { icon: <Facebook className="w-5 h-5" />, name: 'Facebook', url: '#' }
-  ]
+  const services = [
+    'Web Development',
+    'App Development',
+    'AI & ML Solutions',
+    'Data Migration',
+    'Cloud Services',
+    'UI/UX Design',
+    'Other',
+  ];
+
+  const officeLocations = [
+    {
+      city: 'Surat (Head Office)',
+      address: 'Ring Road, Surat, Gujarat 395007',
+      phone: '+91 XXX XXX XXXX',
+    },
+    {
+      city: 'Mumbai',
+      address: 'Andheri East, Mumbai, Maharashtra 400069',
+      phone: '+91 YYY YYY YYYY',
+    },
+    {
+      city: 'Ahmedabad',
+      address: 'Satellite, Ahmedabad, Gujarat 380015',
+      phone: '+91 ZZZ ZZZ ZZZZ',
+    },
+  ];
 
   return (
-    <div className="relative">
-      <AnimatedBackground />
-      
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Get In <span className="gradient-text">Touch</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Have a project in mind? Let's discuss how we can help bring your vision to life
-          </p>
+      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Touch</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105 group"
-              >
-                <div className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
-                  {info.icon}
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${info.gradient} rounded-lg flex items-center justify-center text-white mb-4`}>
+                    {info.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {info.title}
+                  </h3>
+                  {info.details.map((detail, idx) => (
+                    <p key={idx} className="text-gray-600">
+                      {detail}
+                    </p>
+                  ))}
                 </div>
-                <h3 className="text-lg font-bold mb-3">{info.title}</h3>
-                {info.details.map((detail, i) => (
-                  <p key={i} className="text-gray-400 text-sm">
-                    {detail}
-                  </p>
-                ))}
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Form & Map Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="glass-effect rounded-3xl p-8 md:p-10">
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4">
-                  Send Us a <span className="gradient-text">Message</span>
+            <AnimatedSection animation="slide-up">
+              <div className="bg-white p-8 rounded-2xl shadow-xl">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Send Us a Message
                 </h2>
-                <p className="text-gray-400">
-                  Fill out the form below and we'll get back to you as soon as possible
-                </p>
-              </div>
+                
+                {submitMessage && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
+                    {submitMessage}
+                  </div>
+                )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -137,12 +168,13 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition"
                       placeholder="John Doe"
                     />
                   </div>
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -152,15 +184,13 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition"
                       placeholder="john@example.com"
                     />
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
                     <input
@@ -169,166 +199,163 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"
-                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition"
+                      placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
+
                   <div>
-                    <label htmlFor="company" className="block text-sm font-semibold mb-2">
-                      Company Name
+                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                      Service Required *
                     </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"
-                      placeholder="Your Company"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="service" className="block text-sm font-semibold mb-2">
-                    Service Interested In *
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-cyan-400 transition-colors"
-                  >
-                    <option value="" className="bg-slate-900">Select a service</option>
-                    <option value="web" className="bg-slate-900">Web Development</option>
-                    <option value="mobile" className="bg-slate-900">App Development</option>
-                    <option value="ai" className="bg-slate-900">AI/ML Solutions</option>
-                    <option value="data" className="bg-slate-900">Data Migration</option>
-                    <option value="other" className="bg-slate-900">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                    Your Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows="6"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"
-                    placeholder="Tell us about your project..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105"
-                >
-                  Send Message
-                  <Send className="w-5 h-5" />
-                </button>
-              </form>
-            </div>
-
-            {/* Info Section */}
-            <div className="space-y-6">
-              {/* Quick Response */}
-              <div className="glass-effect rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">Quick Response Time</h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      We typically respond to inquiries within 24 hours during business days. For urgent matters, please call us directly.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Map Placeholder */}
-              <div className="glass-effect rounded-3xl overflow-hidden h-64 relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-16 h-16 mx-auto mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-                    <p className="text-xl font-bold">Surat, Gujarat</p>
-                    <p className="text-gray-400">India</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="glass-effect rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
-                <h3 className="text-xl font-bold mb-6">Connect With Us</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      className="flex items-center gap-3 px-4 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-cyan-400 transition-all duration-300 group"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition"
                     >
-                      <div className="text-cyan-400 group-hover:scale-110 transition-transform">
-                        {social.icon}
+                      <option value="">Select a service</option>
+                      {services.map((service, index) => (
+                        <option key={index} value={service}>
+                          {service}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows="5"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition resize-none"
+                      placeholder="Tell us about your project..."
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5 disabled:transform-none disabled:hover:scale-100 disabled:hover:translate-y-0 group"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+                  </button>
+                </form>
+              </div>
+            </AnimatedSection>
+
+            {/* Map & Additional Info */}
+            <AnimatedSection animation="slide-in-right">
+              <div className="space-y-8">
+                {/* Map Placeholder */}
+                <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl p-8 h-80 flex items-center justify-center">
+                  <div className="text-center">
+                    <MapPin className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+                    <p className="text-gray-700 text-lg">Interactive Map</p>
+                    <p className="text-gray-500">Surat, Gujarat, India</p>
+                  </div>
+                </div>
+
+                {/* Office Locations */}
+                <div className="bg-white p-8 rounded-2xl shadow-xl">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    Our Offices
+                  </h3>
+                  <div className="space-y-6">
+                    {officeLocations.map((location, index) => (
+                      <div key={index} className="border-l-4 border-purple-600 pl-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">
+                          {location.city}
+                        </h4>
+                        <p className="text-gray-600 text-sm mb-1">{location.address}</p>
+                        <p className="text-purple-600 text-sm">{location.phone}</p>
                       </div>
-                      <span className="text-sm font-semibold">{social.name}</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Social Media */}
+                <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-2xl text-white">
+                  <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
+                  <p className="mb-6">Stay connected on social media</p>
+                  <div className="flex gap-4">
+                    <a
+                      href="#"
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors"
+                    >
+                      <Linkedin size={24} />
                     </a>
-                  ))}
+                    <a
+                      href="#"
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors"
+                    >
+                      <Twitter size={24} />
+                    </a>
+                    <a
+                      href="#"
+                      className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors"
+                    >
+                      <Facebook size={24} />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Frequently Asked <span className="gradient-text">Questions</span>
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
             </h2>
-          </div>
+            <p className="text-lg text-gray-600">
+              Quick answers to common questions
+            </p>
+          </AnimatedSection>
 
-          <div className="space-y-4">
-            {[
-              {
-                q: 'What is your typical project timeline?',
-                a: 'Project timelines vary based on scope and complexity. A typical web application takes 8-12 weeks, while mobile apps may take 12-16 weeks. We provide detailed timelines during our initial consultation.'
-              },
-              {
-                q: 'Do you offer ongoing support and maintenance?',
-                a: 'Yes, we provide comprehensive support and maintenance packages to ensure your solution continues to perform optimally after launch.'
-              },
-              {
-                q: 'What technologies do you specialize in?',
-                a: 'We specialize in modern web technologies like React, Next.js, Node.js, and cloud platforms. For mobile, we work with React Native and Flutter. We also have expertise in AI/ML using Python and TensorFlow.'
-              },
-              {
-                q: 'Can you work with our existing team?',
-                a: 'Absolutely! We can integrate with your existing team or work independently based on your needs. We have experience with various collaboration models.'
-              }
-            ].map((faq, index) => (
-              <details
-                key={index}
-                className="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
-              >
-                <summary className="font-bold cursor-pointer flex items-center justify-between">
-                  {faq.q}
-                  <span className="text-cyan-400 text-2xl group-open:rotate-45 transition-transform">+</span>
-                </summary>
-                <p className="text-gray-400 mt-4 leading-relaxed">{faq.a}</p>
-              </details>
-            ))}
-          </div>
+          <AnimatedSection>
+            <div className="space-y-6">
+              {[
+                {
+                  question: 'What is your typical project timeline?',
+                  answer: 'Project timelines vary based on complexity, but most projects range from 4-12 weeks. We provide detailed timelines during the initial consultation.',
+                },
+                {
+                  question: 'Do you offer ongoing support?',
+                  answer: 'Yes, we provide comprehensive support and maintenance packages to ensure your solution continues to perform optimally.',
+                },
+                {
+                  question: 'What technologies do you work with?',
+                  answer: 'We work with a wide range of modern technologies including React, Next.js, Node.js, Python, and cloud platforms like AWS and Azure.',
+                },
+                {
+                  question: 'How do you ensure project quality?',
+                  answer: 'We follow rigorous testing procedures, code reviews, and quality assurance protocols throughout the development process.',
+                },
+              ].map((faq, index) => (
+                <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-600">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>
-  )
+  );
 }

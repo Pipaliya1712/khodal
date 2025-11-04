@@ -1,7 +1,7 @@
 'use client'
 
 import { Briefcase, MapPin, Clock, TrendingUp, Heart, Users, Zap, Coffee, Laptop, GraduationCap } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import AnimatedBackground from '@/components/AnimatedSection'
 
 export default function Careers() {
   const benefits = [

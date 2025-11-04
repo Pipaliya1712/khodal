@@ -1,161 +1,186 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { ExternalLink, Code, Smartphone, Brain, Database, ShoppingCart, Globe } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import { useState } from 'react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { ExternalLink, Code, Smartphone, Brain, Database, ShoppingCart, Heart } from 'lucide-react';
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('all')
+  const [activeFilter, setActiveFilter] = useState('all');
 
-  const categories = [
+  const filters = [
     { id: 'all', label: 'All Projects' },
     { id: 'web', label: 'Web Development' },
     { id: 'mobile', label: 'Mobile Apps' },
     { id: 'ai', label: 'AI/ML' },
-    { id: 'ecommerce', label: 'E-Commerce' }
-  ]
+    { id: 'data', label: 'Data Solutions' },
+  ];
 
   const projects = [
     {
-      title: 'FinTech Dashboard',
+      title: 'E-Commerce Platform',
       category: 'web',
-      description: 'Real-time financial analytics platform with advanced data visualization',
-      icon: <Code className="w-6 h-6" />,
-      image: '💼',
-      tags: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
-      color: 'from-cyan-500 to-blue-500'
+      description: 'A comprehensive online shopping platform with advanced features and seamless checkout experience.',
+      technologies: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
+      icon: <ShoppingCart />,
+      gradient: 'from-purple-500 to-pink-500',
+      image: 'bg-purple-100',
     },
     {
       title: 'Healthcare Mobile App',
       category: 'mobile',
-      description: 'Patient management and telemedicine platform for healthcare providers',
-      icon: <Smartphone className="w-6 h-6" />,
-      image: '🏥',
-      tags: ['React Native', 'Firebase', 'WebRTC'],
-      color: 'from-blue-500 to-purple-500'
+      description: 'Patient management system with telemedicine capabilities and appointment scheduling.',
+      technologies: ['React Native', 'Firebase', 'WebRTC'],
+      icon: <Heart />,
+      gradient: 'from-blue-500 to-cyan-500',
+      image: 'bg-blue-100',
     },
     {
-      title: 'AI Chatbot Platform',
+      title: 'AI Chatbot Solution',
       category: 'ai',
-      description: 'Intelligent customer service automation with NLP capabilities',
-      icon: <Brain className="w-6 h-6" />,
-      image: '🤖',
-      tags: ['Python', 'TensorFlow', 'NLP', 'AWS'],
-      color: 'from-purple-500 to-pink-500'
+      description: 'Intelligent customer support chatbot with natural language processing and sentiment analysis.',
+      technologies: ['Python', 'TensorFlow', 'NLP', 'FastAPI'],
+      icon: <Brain />,
+      gradient: 'from-indigo-500 to-purple-500',
+      image: 'bg-indigo-100',
     },
     {
-      title: 'Fashion E-Commerce',
-      category: 'ecommerce',
-      description: 'Modern online shopping platform with AI-powered recommendations',
-      icon: <ShoppingCart className="w-6 h-6" />,
-      image: '👗',
-      tags: ['Next.js', 'Stripe', 'PostgreSQL'],
-      color: 'from-pink-500 to-red-500'
+      title: 'Enterprise Data Migration',
+      category: 'data',
+      description: 'Large-scale data migration from legacy systems to cloud infrastructure with zero downtime.',
+      technologies: ['AWS', 'PostgreSQL', 'Python', 'Apache Airflow'],
+      icon: <Database />,
+      gradient: 'from-cyan-500 to-teal-500',
+      image: 'bg-cyan-100',
     },
     {
-      title: 'Data Migration System',
+      title: 'Real Estate Portal',
       category: 'web',
-      description: 'Enterprise-grade data migration tool for cloud transformation',
-      icon: <Database className="w-6 h-6" />,
-      image: '📊',
-      tags: ['Python', 'Apache Kafka', 'Docker'],
-      color: 'from-red-500 to-orange-500'
+      description: 'Property listing platform with advanced search, virtual tours, and integrated payment system.',
+      technologies: ['React', 'Express', 'MySQL', '3D Tours'],
+      icon: <Code />,
+      gradient: 'from-orange-500 to-red-500',
+      image: 'bg-orange-100',
     },
     {
-      title: 'Restaurant Ordering App',
+      title: 'Fitness Tracking App',
       category: 'mobile',
-      description: 'Multi-restaurant food delivery platform with real-time tracking',
-      icon: <Smartphone className="w-6 h-6" />,
-      image: '🍕',
-      tags: ['Flutter', 'Firebase', 'Google Maps'],
-      color: 'from-orange-500 to-yellow-500'
+      description: 'Comprehensive fitness app with workout plans, nutrition tracking, and social features.',
+      technologies: ['Flutter', 'Firebase', 'ML Kit'],
+      icon: <Smartphone />,
+      gradient: 'from-green-500 to-emerald-500',
+      image: 'bg-green-100',
     },
     {
-      title: 'Predictive Analytics Tool',
+      title: 'Predictive Analytics Platform',
       category: 'ai',
-      description: 'ML-powered forecasting system for business intelligence',
-      icon: <Brain className="w-6 h-6" />,
-      image: '📈',
-      tags: ['Python', 'Scikit-learn', 'Pandas'],
-      color: 'from-yellow-500 to-green-500'
+      description: 'Business intelligence tool using machine learning for sales forecasting and trend analysis.',
+      technologies: ['Python', 'Scikit-learn', 'React', 'D3.js'],
+      icon: <Brain />,
+      gradient: 'from-violet-500 to-purple-500',
+      image: 'bg-violet-100',
     },
     {
-      title: 'Corporate Website',
+      title: 'Cloud Data Warehouse',
+      category: 'data',
+      description: 'Scalable data warehouse solution with real-time analytics and reporting capabilities.',
+      technologies: ['Snowflake', 'DBT', 'Python', 'Tableau'],
+      icon: <Database />,
+      gradient: 'from-sky-500 to-blue-500',
+      image: 'bg-sky-100',
+    },
+    {
+      title: 'Restaurant Management System',
       category: 'web',
-      description: 'Modern corporate website with CMS and multilingual support',
-      icon: <Globe className="w-6 h-6" />,
-      image: '🌐',
-      tags: ['Next.js', 'Tailwind', 'Strapi'],
-      color: 'from-green-500 to-teal-500'
+      description: 'Complete restaurant solution with POS, inventory management, and online ordering.',
+      technologies: ['Vue.js', 'Laravel', 'MySQL', 'Socket.io'],
+      icon: <Code />,
+      gradient: 'from-amber-500 to-orange-500',
+      image: 'bg-amber-100',
     },
-    {
-      title: 'Electronics Marketplace',
-      category: 'ecommerce',
-      description: 'B2B marketplace for electronics with auction features',
-      icon: <ShoppingCart className="w-6 h-6" />,
-      image: '📱',
-      tags: ['React', 'Node.js', 'Redis', 'WebSocket'],
-      color: 'from-teal-500 to-cyan-500'
-    }
-  ]
+  ];
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
-    : projects.filter(p => p.category === activeFilter)
+    : projects.filter(project => project.category === activeFilter);
+
+  const testimonials = [
+    {
+      name: 'John Smith',
+      company: 'TechCorp Inc.',
+      text: 'Khodal delivered an exceptional e-commerce platform that exceeded our expectations. Their attention to detail and technical expertise is outstanding.',
+      rating: 5,
+    },
+    {
+      name: 'Sarah Johnson',
+      company: 'HealthCare Plus',
+      text: 'The mobile app they developed has transformed how we interact with patients. Professional team and excellent communication throughout.',
+      rating: 5,
+    },
+    {
+      name: 'Michael Chen',
+      company: 'DataTech Solutions',
+      text: 'Their AI/ML expertise helped us automate our processes and gain valuable insights. Highly recommend their services!',
+      rating: 5,
+    },
+  ];
 
   return (
-    <div className="relative">
-      <AnimatedBackground />
-      
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Our <span className="gradient-text">Portfolio</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Explore our successful projects and see how we've helped businesses achieve their digital goals
-          </p>
+      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Portfolio</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover our success stories and the innovative solutions we've delivered to clients worldwide
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { number: '1000+', label: 'Projects Completed' },
-              { number: '500+', label: 'Happy Clients' },
-              { number: '50+', label: 'Team Members' },
-              { number: '15+', label: 'Countries Served' }
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">{stat.number}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-purple-600 mb-2">1000+</div>
+                <div className="text-gray-600">Projects Completed</div>
               </div>
-            ))}
-          </div>
+              <div>
+                <div className="text-4xl font-bold text-purple-600 mb-2">500+</div>
+                <div className="text-gray-600">Happy Clients</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-purple-600 mb-2">50+</div>
+                <div className="text-gray-600">Team Members</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-purple-600 mb-2">15+</div>
+                <div className="text-gray-600">Years Experience</div>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-8 bg-gray-50 sticky top-16 z-40 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((cat) => (
+            {filters.map((filter) => (
               <button
-                key={cat.id}
-                onClick={() => setActiveFilter(cat.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeFilter === cat.id
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30'
-                    : 'glass-effect text-gray-300 hover:bg-white/10'
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+                className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  activeFilter === filter.id
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-white text-gray-600 hover:bg-purple-50 hover:text-purple-600'
                 }`}
               >
-                {cat.label}
+                {filter.label}
               </button>
             ))}
           </div>
@@ -163,101 +188,106 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Grid */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-3xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:-translate-y-2 group"
-              >
-                <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center text-8xl relative overflow-hidden`}>
-                  {project.image}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${project.color} rounded-xl flex items-center justify-center`}>
-                      {project.icon}
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                  <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+                    <div className="relative z-10 text-white">
+                      <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <div className="scale-150">{project.icon}</div>
+                      </div>
                     </div>
-                    <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                      <ExternalLink className="w-5 h-5" />
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 flex-1">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium group transition-all duration-200">
+                      View Details <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
                     </button>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-xs"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Industries We <span className="gradient-text">Serve</span>
+      {/* Testimonials */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Delivering specialized solutions across multiple sectors
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Don't just take our word for it - hear from our satisfied clients
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-              { icon: '🏦', name: 'Finance' },
-              { icon: '🏥', name: 'Healthcare' },
-              { icon: '🎓', name: 'Education' },
-              { icon: '🛒', name: 'Retail' },
-              { icon: '🏭', name: 'Manufacturing' },
-              { icon: '🚗', name: 'Automotive' }
-            ].map((industry, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105"
-              >
-                <div className="text-4xl mb-3">{industry.icon}</div>
-                <p className="text-sm font-semibold">{industry.name}</p>
-              </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-8 rounded-xl shadow-lg h-full">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-current"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-purple-600">{testimonial.company}</div>
+                  </div>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-effect rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Want to See Your Project Here?
-              </h2>
-              <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Let's collaborate and create something amazing together
-              </p>
-              <a
-                href="/contact"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105"
-              >
-                Start Your Project
-              </a>
-            </div>
-          </div>
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Start Your Project?
+            </h2>
+            <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+              Let's create something amazing together
+            </p>
+            <a
+              href="/contact"
+              className="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium text-lg"
+            >
+              Get in Touch
+            </a>
+          </AnimatedSection>
         </div>
       </section>
     </div>
-  )
+  );
 }

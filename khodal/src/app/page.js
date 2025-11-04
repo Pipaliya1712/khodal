@@ -1,302 +1,240 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { ArrowRight, Code, Smartphone, Brain, Database, Users, Award, Zap, CheckCircle2, Sparkles } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import Link from 'next/link';
+import AnimatedSection from '@/components/AnimatedSection';
+import { Code, Smartphone, Brain, Database, ArrowRight, CheckCircle2, Users, Award, Zap } from 'lucide-react';
 
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
   const services = [
     {
-      icon: <Code className="w-8 h-8" />,
+      icon: <Code size={40} />,
       title: 'Web Development',
-      description: 'Custom web applications built with cutting-edge technologies for optimal performance.',
-      color: 'from-cyan-500 to-blue-500'
+      description: 'Custom websites and web applications built with modern technologies for optimal performance.',
     },
     {
-      icon: <Smartphone className="w-8 h-8" />,
+      icon: <Smartphone size={40} />,
       title: 'App Development',
       description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
-      color: 'from-blue-500 to-purple-500'
     },
     {
-      icon: <Brain className="w-8 h-8" />,
-      title: 'AI/ML Solutions',
-      description: 'Intelligent systems powered by machine learning and artificial intelligence.',
-      color: 'from-purple-500 to-pink-500'
+      icon: <Brain size={40} />,
+      title: 'AI & ML Solutions',
+      description: 'Intelligent automation and machine learning models to transform your business operations.',
     },
     {
-      icon: <Database className="w-8 h-8" />,
+      icon: <Database size={40} />,
       title: 'Data Migration',
-      description: 'Seamless data transfer and integration services with zero downtime.',
-      color: 'from-pink-500 to-red-500'
-    }
-  ]
+      description: 'Seamless data migration services ensuring zero data loss and minimal downtime.',
+    },
+  ];
 
   const stats = [
-    { icon: <Users className="w-6 h-6" />, number: '500+', label: 'Happy Clients' },
-    { icon: <Award className="w-6 h-6" />, number: '1000+', label: 'Projects Completed' },
-    { icon: <Zap className="w-6 h-6" />, number: '50+', label: 'Team Members' },
-    { icon: <CheckCircle2 className="w-6 h-6" />, number: '99%', label: 'Success Rate' }
-  ]
+    { icon: <Users />, value: '500+', label: 'Clients Served' },
+    { icon: <Award />, value: '1000+', label: 'Projects Completed' },
+    { icon: <Zap />, value: '15+', label: 'Years Experience' },
+    { icon: <CheckCircle2 />, value: '99%', label: 'Success Rate' },
+  ];
 
-  const technologies = [
-    '⚛️ React', '📱 React Native', '🔷 Next.js', '🟢 Node.js', 
-    '🐍 Python', '🔥 Firebase', '☁️ AWS', '🎨 Tailwind CSS'
-  ]
+  const features = [
+    'Agile Development Process',
+    '24/7 Technical Support',
+    'Scalable Solutions',
+    'Quality Assurance',
+    'Cost-Effective',
+    'On-Time Delivery',
+  ];
 
   return (
-    <div className="relative">
-      <AnimatedBackground />
-      
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.15), transparent 40%)`
-          }}
-        />
-        
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="space-y-8">
-            <div className="inline-block animate-bounce">
-              <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-semibold backdrop-blur-sm inline-flex items-center gap-2">
-                <Sparkles className="w-4 h-4" />
-                Innovating the Future of Technology
-              </span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
-              <span className="block mb-2">Transform Your Business</span>
-              <span className="gradient-text animate-pulse-slow">with Khodal IT Solutions</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              We deliver cutting-edge IT solutions that empower businesses to thrive in the digital age. From web development to AI/ML, we've got you covered.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Link
-                href="/services"
-                className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 flex items-center gap-2"
-              >
-                Explore Services
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/contact"
-                className="px-8 py-4 glass-effect rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
-              >
-                Get In Touch
-              </Link>
-            </div>
-
-            {/* Tech Stack Badges */}
-            <div className="pt-12">
-              <p className="text-sm text-gray-500 mb-4">Trusted Technologies We Use</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {technologies.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 hover:scale-105"
-                  >
-                    {tech}
-                  </span>
-                ))}
+      <section className="bg-gradient-to-br from-blue-50 via-white to-cyan-50 py-20 md:py-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <AnimatedSection animation="slide-up">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-8" style={{ fontFamily: 'Caveat, cursive' }}>
+                All your business on{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10">one platform.</span>
+                  <span className="absolute bottom-2 left-0 w-full h-4 bg-yellow-300 -rotate-1 -z-0"></span>
+                </span>
+              </h1>
+              <p className="text-2xl md:text-3xl text-gray-800 mb-8" style={{ fontFamily: 'Caveat, cursive' }}>
+                Simple, efficient, yet{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10">affordable!</span>
+                  <span className="absolute bottom-1 left-0 w-full h-3 bg-cyan-300 rotate-1"></span>
+                </span>
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4 items-center">
+                <Link
+                  href="/contact"
+                  className="bg-blue-700 text-white px-8 py-4 rounded-lg hover:bg-blue-800 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5"
+                >
+                  Start now - It's free
+                </Link>
+                <Link
+                  href="/contact"
+                  className="bg-white text-gray-700 border-2 border-gray-300 px-8 py-4 rounded-lg hover:bg-gray-50 hover:border-blue-700 transition-all duration-200 font-semibold text-lg transform hover:scale-105 hover:-translate-y-0.5"
+                >
+                  Meet an advisor
+                </Link>
               </div>
-            </div>
-          </div>
+              
+              {/* Handwritten annotation */}
+              <div className="mt-12 relative">
+                <svg className="absolute -top-16 right-0 w-32 h-32 text-blue-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 50 Q 30 10, 50 50 T 90 50" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="4 4"/>
+                  <path d="M85 45 L 90 50 L 85 55" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
+                <div className="text-right" style={{ fontFamily: 'Caveat, cursive' }}>
+                  <div className="text-3xl text-blue-700 font-bold">₹580.00 Rs/month</div>
+                  <div className="text-2xl text-blue-700">for ALL apps</div>
+                </div>
+              </div>
+            </AnimatedSection>
 
-          {/* Floating 3D Elements */}
-          <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg opacity-20 blur-xl animate-float"></div>
-          <div className="absolute bottom-40 right-20 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20 blur-xl animate-float-delayed"></div>
-          <div className="absolute top-1/2 right-10 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 blur-xl animate-float"></div>
+            <AnimatedSection animation="slide-in-right" className="relative">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-blue-400 rounded-2xl transform rotate-6"></div>
+                <div className="relative bg-white p-8 rounded-2xl shadow-xl">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-purple-50 p-6 rounded-lg">
+                      <Code className="text-purple-600 mb-2" size={32} />
+                      <p className="font-semibold text-gray-800">Web Dev</p>
+                    </div>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <Smartphone className="text-blue-600 mb-2" size={32} />
+                      <p className="font-semibold text-gray-800">App Dev</p>
+                    </div>
+                    <div className="bg-indigo-50 p-6 rounded-lg">
+                      <Brain className="text-indigo-600 mb-2" size={32} />
+                      <p className="font-semibold text-gray-800">AI & ML</p>
+                    </div>
+                    <div className="bg-cyan-50 p-6 rounded-lg">
+                      <Database className="text-cyan-600 mb-2" size={32} />
+                      <p className="font-semibold text-gray-800">Data</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center group hover:bg-white/10 transition-all duration-300 hover:scale-105"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg mb-4 group-hover:scale-110 transition-transform">
-                  {stat.icon}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 text-purple-600 rounded-lg mb-4">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-600">{stat.label}</div>
                 </div>
-                <div className="text-3xl font-bold gradient-text mb-2">{stat.number}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Services</span>
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Services
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Comprehensive IT solutions tailored to meet your business needs
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Comprehensive IT solutions tailored to meet your unique business needs
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 group hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:-translate-y-2"
-              >
-                <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl mb-4 group-hover:scale-110 transition-transform shadow-lg`}>
-                  {service.icon}
+              <AnimatedSection key={index} animation="slide-up" className="delay-100">
+                <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full transform hover:scale-105 hover:-translate-y-2 group">
+                  <div className="text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <Link
+                    href="/services"
+                    className="text-purple-600 hover:text-purple-700 font-medium inline-flex items-center gap-2 group/link transition-all duration-200"
+                  >
+                    Learn more <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform duration-200" />
+                  </Link>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
-              </div>
+              </AnimatedSection>
             ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105"
-            >
-              View All Services
-              <ArrowRight className="w-5 h-5" />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose <span className="gradient-text">Khodal</span>?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-xl font-bold mb-3">Result-Driven Approach</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                We focus on delivering measurable results that directly impact your business growth and success.
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <AnimatedSection animation="slide-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Why Choose Khodal?
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                We combine technical expertise with business acumen to deliver solutions that drive real results. Our team is committed to your success.
               </p>
-            </div>
-            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-3">Cutting-Edge Technology</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                We use the latest technologies and best practices to build future-proof solutions.
-              </p>
-            </div>
-            <div className="glass-effect rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105">
-              <div className="text-5xl mb-4">🤝</div>
-              <h3 className="text-xl font-bold mb-3">Dedicated Support</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Our team provides continuous support to ensure your success every step of the way.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              What Our <span className="gradient-text">Clients Say</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Rahul Sharma',
-                role: 'CEO, TechStart India',
-                text: 'Khodal transformed our digital presence completely. Their expertise in web development is outstanding!',
-                rating: 5
-              },
-              {
-                name: 'Priya Mehta',
-                role: 'Founder, HealthCare Plus',
-                text: 'The AI solutions they delivered exceeded our expectations. Highly professional team!',
-                rating: 5
-              },
-              {
-                name: 'Amit Desai',
-                role: 'CTO, FinTech Solutions',
-                text: 'Best IT partner we have worked with. Their attention to detail is remarkable.',
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105"
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">⭐</span>
-                  ))}
-                </div>
-                <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-xl">
-                    {testimonial.name.charAt(0)}
+              <div className="grid grid-cols-2 gap-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="text-green-500 flex-shrink-0 mt-1" size={20} />
+                    <span className="text-gray-700">{feature}</span>
                   </div>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </AnimatedSection>
+
+            <AnimatedSection animation="slide-in-right">
+              <div className="bg-gradient-to-br from-purple-500 to-blue-500 p-8 rounded-2xl text-white">
+                <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
+                <p className="mb-6">
+                  Let's discuss how we can help transform your business with our innovative IT solutions.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5"
+                >
+                  Contact Us Today
+                </Link>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="glass-effect rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h2>
-              <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Let's collaborate and bring your ideas to life with our expert team
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105"
-              >
-                Start Your Journey
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Let's Build Something Amazing Together
+            </h2>
+            <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+              Partner with us to transform your vision into reality
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-200 font-medium text-lg shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5"
+            >
+              Start Your Project
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>
-  )
+  );
 }

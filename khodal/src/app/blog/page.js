@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Calendar, Clock, User, ArrowRight, Tag } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import AnimatedBackground from '@/components/AnimatedSection'
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('all')

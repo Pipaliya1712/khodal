@@ -1,193 +1,230 @@
-'use client'
+'use client';
 
-import { Target, Eye, Heart, Award, Users, Lightbulb, Shield, Zap } from 'lucide-react'
-import AnimatedBackground from '@/components/AnimatedBackground'
+import AnimatedSection from '@/components/AnimatedSection';
+import { Target, Eye, Award, Users, Clock, Globe, Heart, Lightbulb } from 'lucide-react';
 
 export default function About() {
   const values = [
     {
-      icon: <Lightbulb className="w-6 h-6" />,
+      icon: <Lightbulb />,
       title: 'Innovation',
-      description: 'We constantly push boundaries to deliver cutting-edge solutions'
+      description: 'We constantly explore new technologies and methodologies to deliver cutting-edge solutions.',
     },
     {
-      icon: <Shield className="w-6 h-6" />,
-      title: 'Integrity',
-      description: 'Transparency and honesty guide every decision we make'
+      icon: <Heart />,
+      title: 'Client Focus',
+      description: 'Your success is our success. We prioritize understanding and meeting your unique needs.',
     },
     {
-      icon: <Heart className="w-6 h-6" />,
-      title: 'Client-Centric',
-      description: 'Your success is our priority in everything we do'
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
+      icon: <Award />,
       title: 'Excellence',
-      description: 'We maintain the highest standards in all our deliverables'
-    }
-  ]
+      description: 'We maintain the highest standards in every project, ensuring quality and reliability.',
+    },
+    {
+      icon: <Users />,
+      title: 'Collaboration',
+      description: 'We work closely with our clients as partners in achieving their business goals.',
+    },
+  ];
 
   const team = [
-    { name: 'Rajesh Patel', role: 'CEO & Founder', image: '👨‍💼' },
-    { name: 'Priya Shah', role: 'CTO', image: '👩‍💻' },
-    { name: 'Amit Kumar', role: 'Head of Development', image: '👨‍💻' },
-    { name: 'Sneha Desai', role: 'Head of Design', image: '👩‍🎨' }
-  ]
+    {
+      name: 'Expert Developers',
+      count: '50+',
+      description: 'Skilled in latest technologies',
+    },
+    {
+      name: 'Project Managers',
+      count: '10+',
+      description: 'Ensuring smooth delivery',
+    },
+    {
+      name: 'Design Specialists',
+      count: '15+',
+      description: 'Creating stunning interfaces',
+    },
+    {
+      name: 'QA Engineers',
+      count: '20+',
+      description: 'Maintaining quality standards',
+    },
+  ];
+
+  const milestones = [
+    { year: '2008', event: 'Company Founded', description: 'Started our journey in Surat' },
+    { year: '2012', event: 'Expanded Services', description: 'Added mobile app development' },
+    { year: '2016', event: 'AI/ML Division', description: 'Launched AI and ML solutions' },
+    { year: '2020', event: '500+ Clients', description: 'Reached major milestone' },
+    { year: '2024', event: 'Global Presence', description: 'Serving clients worldwide' },
+  ];
 
   return (
-    <div className="relative">
-      <AnimatedBackground />
-      
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            About <span className="gradient-text">Khodal</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Pioneering digital transformation through innovative IT solutions and unwavering commitment to excellence
-          </p>
+      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Khodal</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We are a leading IT solutions provider dedicated to transforming businesses through innovative technology and exceptional service.
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="glass-effect rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 group">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform">
-                <Target className="w-8 h-8" />
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12">
+            <AnimatedSection animation="slide-up">
+              <div className="bg-purple-50 p-8 rounded-2xl h-full">
+                <div className="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                  <Target className="text-white" size={32} />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage. We strive to be a trusted partner in our clients' digital transformation journey.
+                </p>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                To empower businesses worldwide with transformative IT solutions that drive growth, innovation, and success. We strive to be the trusted technology partner that turns visions into reality through expertise, dedication, and cutting-edge solutions.
-              </p>
-            </div>
+            </AnimatedSection>
 
-            <div className="glass-effect rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 group">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform">
-                <Eye className="w-8 h-8" />
+            <AnimatedSection animation="slide-up">
+              <div className="bg-blue-50 p-8 rounded-2xl h-full">
+                <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                  <Eye className="text-white" size={32} />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h2>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  To be recognized globally as a leader in IT innovation, known for delivering exceptional value and fostering long-term relationships built on trust, quality, and mutual success.
+                </p>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-              <p className="text-gray-400 leading-relaxed text-lg">
-                To become a global leader in IT innovation, recognized for delivering exceptional value and fostering long-term partnerships. We envision a future where technology seamlessly integrates with business to create unprecedented opportunities for growth and success.
-              </p>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Company Story */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Our <span className="gradient-text">Story</span>
+      {/* Values */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Core Values
             </h2>
-          </div>
-          
-          <div className="glass-effect rounded-3xl p-8 md:p-12">
-            <p className="text-gray-300 leading-relaxed text-lg mb-6">
-              Founded in the heart of Gujarat, Khodal emerged from a simple yet powerful vision: to bridge the gap between businesses and technology. What started as a small team of passionate developers has grown into a full-service IT solutions provider, serving clients across the globe.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              The principles that guide everything we do
             </p>
-            <p className="text-gray-300 leading-relaxed text-lg mb-6">
-              Over the years, we've evolved alongside technology, constantly adapting and innovating to meet the changing needs of our clients. From web development to artificial intelligence, our expertise spans the entire spectrum of modern IT solutions.
-            </p>
-            <p className="text-gray-300 leading-relaxed text-lg">
-              Today, we're proud to have completed over 1000 projects, partnered with 500+ clients, and built a team of 50+ dedicated professionals. But our journey is far from over. We continue to push boundaries, embrace new technologies, and deliver solutions that make a real difference.
-            </p>
-          </div>
-        </div>
-      </section>
+          </AnimatedSection>
 
-      {/* Core Values */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Core Values</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              The principles that guide our work and relationships
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:-translate-y-2"
-              >
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl mb-4">
-                  {value.icon}
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-white p-6 rounded-xl shadow-lg text-center h-full">
+                  <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600">{value.description}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{value.description}</p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Meet Our <span className="gradient-text">Leadership</span>
+      {/* Our Story */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Journey
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              The visionaries driving our success
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              From humble beginnings to industry leadership
             </p>
-          </div>
+          </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="glass-effect rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300 hover:scale-105 group"
-              >
-                <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform">
-                  {member.image}
+          <AnimatedSection>
+            <div className="relative">
+              {milestones.map((milestone, index) => (
+                <div key={index} className="mb-12 flex gap-6 items-start">
+                  <div className="flex flex-col items-center">
+                    <div className="w-4 h-4 bg-purple-600 rounded-full"></div>
+                    {index !== milestones.length - 1 && (
+                      <div className="w-0.5 h-full bg-purple-200 mt-2"></div>
+                    )}
+                  </div>
+                  <div className="flex-1 pb-8">
+                    <div className="bg-purple-50 p-6 rounded-xl">
+                      <div className="text-purple-600 font-bold text-xl mb-2">
+                        {milestone.year}
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {milestone.event}
+                      </h3>
+                      <p className="text-gray-600">{milestone.description}</p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-cyan-400 text-sm">{member.role}</p>
-              </div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Team Stats */}
+      <section className="py-20 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Our Amazing Team
+            </h2>
+            <p className="text-xl text-purple-100 max-w-2xl mx-auto">
+              Talented professionals dedicated to your success
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member, index) => (
+              <AnimatedSection key={index} animation="slide-up">
+                <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl text-center">
+                  <div className="text-4xl font-bold mb-2">{member.count}</div>
+                  <div className="text-xl font-semibold mb-2">{member.name}</div>
+                  <div className="text-purple-100">{member.description}</div>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="glass-effect rounded-3xl p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"></div>
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
-                Why Choose <span className="gradient-text">Khodal</span>?
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <Award className="w-12 h-12 mx-auto mb-4 text-cyan-400" />
-                  <h3 className="text-xl font-bold mb-2">Proven Expertise</h3>
-                  <p className="text-gray-400">Years of experience delivering successful projects</p>
-                </div>
-                <div className="text-center">
-                  <Users className="w-12 h-12 mx-auto mb-4 text-cyan-400" />
-                  <h3 className="text-xl font-bold mb-2">Dedicated Team</h3>
-                  <p className="text-gray-400">Skilled professionals committed to your success</p>
-                </div>
-                <div className="text-center">
-                  <Zap className="w-12 h-12 mx-auto mb-4 text-cyan-400" />
-                  <h3 className="text-xl font-bold mb-2">Cutting-Edge Tech</h3>
-                  <p className="text-gray-400">Latest technologies and best practices</p>
-                </div>
-              </div>
-            </div>
+      {/* Company Stats */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-12">
+            <AnimatedSection className="text-center">
+              <Clock className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+              <div className="text-4xl font-bold text-gray-900 mb-2">15+</div>
+              <div className="text-xl text-gray-600">Years of Excellence</div>
+            </AnimatedSection>
+
+            <AnimatedSection className="text-center">
+              <Globe className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+              <div className="text-4xl font-bold text-gray-900 mb-2">25+</div>
+              <div className="text-xl text-gray-600">Countries Served</div>
+            </AnimatedSection>
+
+            <AnimatedSection className="text-center">
+              <Award className="w-16 h-16 text-purple-600 mx-auto mb-4" />
+              <div className="text-4xl font-bold text-gray-900 mb-2">50+</div>
+              <div className="text-xl text-gray-600">Industry Awards</div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }
