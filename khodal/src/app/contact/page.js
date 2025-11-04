@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Mail, Phone, MapPin, Send, Clock, Linkedin, Twitter, Facebook } from 'lucide-react';
+import ToastHost from '@/components/ToastHost';
 
 export default function Contact() {
+  const toastRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,6 +17,7 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -26,21 +29,45 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError('');
+    setSubmitMessage('');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitMessage('Thank you for your message! We will get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: '',
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      setTimeout(() => setSubmitMessage(''), 5000);
-    }, 1500);
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage(result.message);
+        toastRef.current?.show({ type: 'success', title: 'Success', message: result.message || 'Message sent successfully.' });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        setSubmitError(result.error || 'Something went wrong. Please try again.');
+        toastRef.current?.show({ type: 'error', title: 'Error', message: result.error || 'Something went wrong. Please try again.' });
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitError('Failed to submit form. Please check your connection and try again.');
+      toastRef.current?.show({ type: 'error', title: 'Network Error', message: 'Failed to submit form. Please check your connection and try again.' });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setSubmitMessage('');
+        setSubmitError('');
+      }, 5000);
+    }
   };
 
   const contactInfo = [
@@ -100,6 +127,8 @@ export default function Contact() {
 
   return (
     <div className="pt-16">
+      {/* Toasts */}
+      <ToastHost ref={toastRef} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -261,12 +261,14 @@ export default function Services() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {process.map((item, index) => (
               <AnimatedSection key={index} animation="slide-up">
                 <div className="relative">
-                  <div className="absolute -top-4 -left-4 text-6xl font-bold text-purple-100">
-                    {item.step}
+                  <div className="absolute -top-8 -left-8 z-10">
+                    <div className="w-14 h-14 rounded-xl bg-purple-100 text-purple-500 shadow-sm flex items-center justify-center text-3xl font-extrabold">
+                      {item.step}
+                    </div>
                   </div>
                   <div className="relative bg-white border-2 border-purple-100 p-6 rounded-xl hover:border-purple-300 transition-colors duration-300">
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">

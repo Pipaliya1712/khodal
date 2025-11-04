@@ -79,18 +79,6 @@ export default function Home() {
                   Meet an advisor
                 </Link>
               </div>
-              
-              {/* Handwritten annotation */}
-              <div className="mt-12 relative">
-                <svg className="absolute -top-16 right-0 w-32 h-32 text-blue-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 50 Q 30 10, 50 50 T 90 50" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="4 4"/>
-                  <path d="M85 45 L 90 50 L 85 55" stroke="currentColor" strokeWidth="2" fill="none"/>
-                </svg>
-                <div className="text-right" style={{ fontFamily: 'Caveat, cursive' }}>
-                  <div className="text-3xl text-blue-700 font-bold">₹580.00 Rs/month</div>
-                  <div className="text-2xl text-blue-700">for ALL apps</div>
-                </div>
-              </div>
             </AnimatedSection>
 
             <AnimatedSection animation="slide-in-right" className="relative">
